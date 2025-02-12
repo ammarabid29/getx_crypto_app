@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:getx_crypto_app/features/crypto/presentation/view_model/add_asset_view_model.dart';
 
 class AddAssetsDialog extends StatelessWidget {
-  final controller = Get.put(
-    AddAssetDialogController(),
-  );
+  final controller = Get.put(AddAssetDialogController());
+
   AddAssetsDialog({super.key});
 
   @override
@@ -38,7 +37,9 @@ class AddAssetsDialog extends StatelessWidget {
       );
     } else {
       return Column(
-        children: [],
+        children: [
+          const Text("Add Assets"),
+        ],
       );
     }
   }

@@ -20,17 +20,14 @@ class CoinDataSource {
 
   Future<List<CoinData>> fetchCoinData() async {
     try {
-      final response = await _dio
-          .get("https://api.cryptorank.io/v1/currencies?api_key=$cryptoAPIKey");
-
+      final response = await _dio.get("currencies");
       if (response.statusCode == 200) {
-        final List<CoinData> coinData = [];
-        response.data['data'].forEach((v) {
-          coinData.add(CoinData.fromJson(v));
-        });
+        final body = response.data["data"];
+        final coinData =
+            (body as List).map((json) => CoinData.fromJson(json)).toList();
         return coinData;
       } else {
-        throw Exception("Failed to load data");
+        throw Exception("Error getting coin data");
       }
     } catch (e) {
       rethrow;

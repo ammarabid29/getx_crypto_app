@@ -1,7 +1,7 @@
-import 'package:getx_crypto_app/features/crypto/domain/models/coin_data.dart';
+import 'package:getx_crypto_app/features/crypto/domain/models/coin_data_model.dart';
 
 class ApiResponseModel {
-  List<CoinData>? coinData;
+  List<CoinDataModel>? coinData;
   Meta? meta;
   Status? status;
 
@@ -9,9 +9,9 @@ class ApiResponseModel {
 
   ApiResponseModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      coinData = <CoinData>[];
+      coinData = <CoinDataModel>[];
       json['data'].forEach((v) {
-        coinData!.add(CoinData.fromJson(v));
+        coinData!.add(CoinDataModel.fromJson(v));
       });
     }
     meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;

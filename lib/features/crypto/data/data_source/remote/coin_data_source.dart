@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:getx_crypto_app/core/constants/consts.dart';
-import 'package:getx_crypto_app/features/crypto/domain/models/coin_data.dart';
+import 'package:getx_crypto_app/features/crypto/domain/models/coin_data_model.dart';
 
 class CoinDataSource {
   final Dio _dio = Dio();
@@ -18,19 +18,19 @@ class CoinDataSource {
     );
   }
 
-  Future<List<CoinData>> fetchCoinData() async {
+  Future<List<CoinDataModel>> fetchCurrenciesData() async {
     try {
       final response = await _dio.get("currencies");
-      if (response.statusCode == 200) {
-        final body = response.data["data"];
-        final coinData =
-            (body as List).map((json) => CoinData.fromJson(json)).toList();
-        return coinData;
-      } else {
-        throw Exception("Error getting coin data");
-      }
+      final body = response.data["data"];
+      final coinData =
+          (body as List).map((json) => CoinDataModel.fromJson(json)).toList();
+      return coinData;
     } catch (e) {
       rethrow;
     }
+  }
+
+  String getCurrenciesIcons(String name) {
+    return "https://raw.githubusercontent.com/ErikThiart/cryptocurrency-icons/refs/heads/master/128/${name}.png";
   }
 }

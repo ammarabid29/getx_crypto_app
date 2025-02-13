@@ -1,4 +1,4 @@
-class CoinData {
+class CoinDataModel {
   int? id;
   int? rank;
   String? slug;
@@ -14,7 +14,7 @@ class CoinData {
   String? lastUpdated;
   List<Tokens>? tokens;
 
-  CoinData(
+  CoinDataModel(
       {this.id,
       this.rank,
       this.slug,
@@ -30,7 +30,7 @@ class CoinData {
       this.lastUpdated,
       this.tokens});
 
-  CoinData.fromJson(Map<String, dynamic> json) {
+  CoinDataModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     rank = json['rank'];
     slug = json['slug'];
@@ -190,4 +190,3 @@ class Platform {
     return data;
   }
 }
-
